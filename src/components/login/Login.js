@@ -7,9 +7,15 @@ class Login extends Component {
 
     
     render(){
-
+        var user_message = null;
+        if(this.props.redirection === true){
+            user_message = <div className="alert alert-success" role="alert">
+                    Please enter correct user credential
+            </div>
+        }
         return (
             <div className="login-container">
+                {user_message}
                <form>
                     <div className="form-group">
                         <label >Username</label>

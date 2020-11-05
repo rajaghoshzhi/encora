@@ -36,13 +36,14 @@ const reducer = (state = initialState,action) => {
         newState.formDetails = [...nState];        
     }
     if(action.type === 'ADD_NOTES'){
-                var obj ={};
+        if(newState.formDetails[0].title !== '' && newState.formDetails[0].message!== ''){
+            var obj ={};
                  obj.id = ++action.payload;
                  obj.title = newState.formDetails[0].title;
                  obj.message = newState.formDetails[0].message;
                  newState.cardList= [...newState.cardList,obj];
                  newState.counter = obj.id;
-                 // clear 
+        }                
                 
     }
     if(action.type === "DELETE_NOTES"){
