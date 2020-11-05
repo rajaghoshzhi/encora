@@ -1,0 +1,46 @@
+.page-header {
+    padding: 20px;
+    background: #f7f7f7;
+    border-bottom: 1px solid #ced4da;
+}
+.page-body .left {
+    width: 20%;
+    border: 1px solid #ced4da;
+    border-top:none;
+    position: fixed;
+    height: 100vh;
+    float:left
+}
+.page-body .right {
+    width: 70%;
+    margin-left: 25%;
+    float: left;
+}
+.page-body .right .notes-section{
+    width:100%;
+    float:right;
+}
+.notes{
+    margin: 20px 0;
+    float:right;
+}
+.submit {
+    float:right;
+}
+.ticket {
+    padding: 10px;
+    border-bottom: 1px solid #ced4da;
+}
+.ticket .ticket-title{
+ float:left;
+ width:90%;
+ font-size: 20px;
+}
+
+.ticket .ticket-remove{
+    float:left;
+}
+.ticket .ticket-message{
+    font-size: 15px;
+    width: 90%;
+}

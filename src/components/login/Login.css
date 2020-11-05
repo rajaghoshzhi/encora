@@ -1,0 +1,8 @@
+.login-container {
+    width: 350px;
+    margin: 100px auto;
+    /* border: 1px solid grey; */
+    border-radius: 5px;
+    padding: 20px;
+    border: 1px solid #ced4da;
+}
