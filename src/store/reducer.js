@@ -52,13 +52,11 @@ const reducer = (state = initialState,action) => {
         newState.cardList= [...arr];
     }
     if(action.type === "USER_LOGIN"){
-        if(newState.username === "test" && newState.password === "1234"){
-            alert("true")
-            newState.username = "test";
-            newState.password = "1234";
-            newState.redirect = true;
+        if(newState.username === "test" && newState.password === "1234"){           
+           newState.redirect = true;
+           window.location = window.location.href+"Dashboard";
         } else{
-            alert("false");
+            newState.redirect = false;
         }
     }
     if(action.type === "USERNAME"){

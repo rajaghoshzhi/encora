@@ -1,24 +1,26 @@
-
 import React, { Component }from 'react';
 import './Login.css';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 class Login extends Component {
 
-   
- 
+
+    
     render(){
+
         return (
             <div className="login-container">
                <form>
                     <div className="form-group">
                         <label >Username</label>
-                        <input type="text" className="form-control" id="username" onChange={this.props.userHandler}  aria-describedby="userHelp" />
+                        <input type="text" className="form-control" id="username" value={this.props.uname} onChange={this.props.userHandler}  aria-describedby="userHelp" />
                         <small id="userHelp" className="form-text text-muted">We'll never share your credentials with anyone else.</small>
                     </div>
                     <div className="form-group">
                         <label >Password</label>
-                        <input type="password" className="form-control" onChange={this.props.passHandler} id="password" />
+                        <input type="password" className="form-control" value={this.props.pwd} onChange={this.props.passHandler} id="password" />
                     </div>
+                    
                     <button type="button" className="btn btn-primary" onClick={this.props.loginHandler}>Log In</button>
                 </form>
                 
@@ -29,7 +31,9 @@ class Login extends Component {
 
 const mapStateToProps = (state)=>{
     return {
-        login:state.inputCredentials
+        redirection: state.redirect,
+        uname:state.username,
+        pwd:state.password
     }
 }
 const mapDispatchToProps =(dispatch)=>{
@@ -40,4 +44,4 @@ const mapDispatchToProps =(dispatch)=>{
         
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Login);
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(Login));
