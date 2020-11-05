@@ -39,6 +39,7 @@
 
 .ticket .ticket-remove{
     float:left;
+    cursor: pointer;
 }
 .ticket .ticket-message{
     font-size: 15px;

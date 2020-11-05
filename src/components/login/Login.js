@@ -1,22 +1,25 @@
 
 import React, { Component }from 'react';
 import './Login.css';
-
+import { connect } from 'react-redux';
 class Login extends Component {
+
+   
+ 
     render(){
         return (
-            <div class="login-container">
+            <div className="login-container">
                <form>
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" aria-describedby="userHelp" />
-                        <small id="userHelp" class="form-text text-muted">We'll never share your credentials with anyone else.</small>
+                    <div className="form-group">
+                        <label >Username</label>
+                        <input type="text" className="form-control" id="username" onChange={this.props.userHandler}  aria-describedby="userHelp" />
+                        <small id="userHelp" className="form-text text-muted">We'll never share your credentials with anyone else.</small>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" />
+                    <div className="form-group">
+                        <label >Password</label>
+                        <input type="password" className="form-control" onChange={this.props.passHandler} id="password" />
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" className="btn btn-primary" onClick={this.props.loginHandler}>Log In</button>
                 </form>
                 
             </div>
@@ -24,4 +27,17 @@ class Login extends Component {
     }
 }
 
-export default Login
+const mapStateToProps = (state)=>{
+    return {
+        login:state.inputCredentials
+    }
+}
+const mapDispatchToProps =(dispatch)=>{
+    return {
+        userHandler: (e)=> dispatch({type:'USERNAME',payload:e.target.value}),
+        passHandler: (e)=> dispatch({type:'PASSWORD',payload:e.target.value}),
+        loginHandler: ()=> dispatch({type:'USER_LOGIN'})
+        
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

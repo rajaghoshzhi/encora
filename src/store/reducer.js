@@ -5,7 +5,10 @@ const initialState ={
     cardList:[
         {id:0,title:'Default',message:'this is a default message'}
     ],
-    counter:0
+    counter:0,
+    username:'',
+    password:'',
+    redirect:false
 }
 
 
@@ -47,6 +50,22 @@ const reducer = (state = initialState,action) => {
         var arr = [...newState.cardList]
         arr.splice(index, 1);
         newState.cardList= [...arr];
+    }
+    if(action.type === "USER_LOGIN"){
+        if(newState.username === "test" && newState.password === "1234"){
+            alert("true")
+            newState.username = "test";
+            newState.password = "1234";
+            newState.redirect = true;
+        } else{
+            alert("false");
+        }
+    }
+    if(action.type === "USERNAME"){
+        newState.username = action.payload
+    }
+    if(action.type === "PASSWORD"){
+        newState.password = action.payload
     }
     console.log(newState);
     return newState;
