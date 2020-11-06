@@ -1,31 +1,44 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
+import Header from '../header/header';
+import ErrorHandler from '../error/ErrorHandler';
 import  {connect} from 'react-redux';
 
 class Dashboard extends Component {
     
     
     render() {
-    var tickets =  this.props.cards.map((item,index)=>{
-            return (
-                <div key={item.id} className="ticket">
-                            <div className="ticket-header">
-                                <div className="ticket-title">{item.title}</div>
-                                <div className="ticket-remove" onClick={()=>this.props.deleteTicket(item.id)}>X</div>
-                            </div>
-                            
-                            <div className="ticket-message">{item.message}</div>
-                </div>
-            )
-        })
+        var user_message = null;
+        if(this.props.flag === false){
+                
+                user_message = <ErrorHandler classDetails="alert alert-danger noteMessage" msg="You can't submit a blank notes." />
+        }else if(this.props.flag === true){
+            
+                user_message = <ErrorHandler classDetails="alert alert-success noteMessage" msg="Notes saved successfully." />
+               
+        }
+
+        var tickets =  this.props.cards.map((item,index)=>{
+                return (
+                    <div key={item.id} className="ticket">
+                                <div className="ticket-header">
+                                    <div className="ticket-title">{item.title}</div>
+                                    <div className="ticket-remove" onClick={()=>this.props.deleteTicket(item.id)}>X</div>
+                                </div>
+                                
+                                <div className="ticket-message">{item.message}</div>
+                    </div>
+                )
+            })
         return (
             <div className="container-fluid"> 
-                <div className='page-header'>G notes</div>
+                <Header headerName="G notes"/>                
                 <div className='page-body'>
                     <div className='left'>
                         {tickets}
                     </div>
                     <div className='right'>
+                        {user_message}
                         <div className="notes-section">
                             <button type="button" className="btn btn-light notes">Add Notes</button>
                         </div>                    
@@ -37,7 +50,7 @@ class Dashboard extends Component {
                     </div>
                     <div className="form-group">
                         <label >Body</label>
-                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="10" onChange={this.props.handleMessage}></textarea>
+                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="8" onChange={this.props.handleMessage}></textarea>
                     </div>
                     <button type="button" className="btn btn-primary submit" onClick={()=>this.props.addNotesHandler(this.props.generateId)}>Submit</button>
                 </form>
@@ -52,7 +65,8 @@ class Dashboard extends Component {
 const mapStateToProps = (state)=>{
     return {
         cards: state.cardList,
-        generateId: state.counter
+        generateId: state.counter,
+        flag:state.flag
     }
 }
 const mapDispatchToProps =(dispatch)=>{

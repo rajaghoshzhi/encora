@@ -1,8 +1,4 @@
-.page-header {
-    padding: 20px;
-    background: #f7f7f7;
-    border-bottom: 1px solid #ced4da;
-}
+
 .page-body .left {
     width: 20%;
     border: 1px solid #ced4da;
@@ -44,4 +40,10 @@
 .ticket .ticket-message{
     font-size: 15px;
     width: 90%;
+}
+.noteMessage {
+    width: 30%;
+    margin-top: 10px;
+    margin-left: 70%;    
+    margin-bottom: 0px;
 }

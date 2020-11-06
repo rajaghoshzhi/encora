@@ -1,5 +1,6 @@
 import React, { Component }from 'react';
 import './Login.css';
+import ErrorHandler from '../error/ErrorHandler';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 class Login extends Component {
@@ -9,9 +10,10 @@ class Login extends Component {
     render(){
         var user_message = null;
         if(this.props.redirection === true){
-            user_message = <div className="alert alert-success" role="alert">
-                    Please enter correct user credential
-            </div>
+            user_message = <ErrorHandler classDetails="alert alert-success" msg="You are successfully logged In." />
+           
+        }else if(this.props.redirection === false){
+            user_message = <ErrorHandler classDetails="alert alert-danger" msg="Please enter correct user credential." />
         }
         return (
             <div className="login-container">

@@ -7,8 +7,7 @@ const initialState ={
     ],
     counter:0,
     username:'',
-    password:'',
-    redirect:false
+    password:''
 }
 
 
@@ -43,6 +42,9 @@ const reducer = (state = initialState,action) => {
                  obj.message = newState.formDetails[0].message;
                  newState.cardList= [...newState.cardList,obj];
                  newState.counter = obj.id;
+                 newState.flag = true;
+        }else{
+                newState.flag = false;
         }                
                 
     }
@@ -66,7 +68,6 @@ const reducer = (state = initialState,action) => {
     if(action.type === "PASSWORD"){
         newState.password = action.payload
     }
-    console.log(newState);
     return newState;
 }
 
